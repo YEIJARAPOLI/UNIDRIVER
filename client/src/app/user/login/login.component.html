@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col m4 s12 offset-m4">
+        <div class="card">
+            <div class="sm-jumbotron center-align">
+                <h2>Iniciar Sesión</h2>
+                <div class="row">
+                    <div class="col s12">
+                        <img src="../../../assets/img/logo.jpeg" alt="" class="img">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div *ngIf="errorMessage">
+                            <strong>Error</strong> {{errorMessage}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form [formGroup]="singnupForm" class="col s12 white" (ngSubmit)="singUp(singnupForm.value)">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="email" name="email" formControlName="email" ([ngModel])="user.email" required/>
+                        <label for="">E-mail</label>
+                        <div *ngIf="singnupForm.get('email').hasError('email') && singnupForm.get('email').touched">
+                            Es necesario introducir el E-mail
+                        </div>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="password" name="Password" formControlName="password" ([ngmodel])="user.password" required/>
+                        <label for="">Contraseña</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m6 s12">
+                        <input [disabled]="singnupForm.invalid" type="submit" class="btn" value="Ingresar">
+                    </div>
+                    <!--<div class="col m6 s12">
+                        <a routerLink="/register" class="button">Registrarse</a>
+                        <input type="submit" class="btn" value="Registrarse" rout>
+                    </div>-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

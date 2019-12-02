@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col m6 s12 offset-m3">
+        <div>
+            <div class="sm-jumbotron center-align">
+                <h4>Registrate</h4>
+            </div>
+            <form class="col s12 white" (ngSubmit)="saveUser()">
+                <div class="row">
+                    <div class="input-field col m6 s12">
+                        <input id="name" type="text" ([ngModel])="user.name" name="nombre" required>
+                        <label for="">Nombre</label>
+                    </div>
+                    <div class="input-field col m6 s12">
+                        <input id="lastName" type="text" ([ngModel])="user.lastname" name="apellido" required>
+                        <label for="">Apellido</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" ([ngModel])="user.email" name="email" required>
+                        <label for="">E-mail</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col m6 s12">
+                        <input id="password" type="password" ([ngModel])="user.password" name="clave" required>
+                        <label for="">Contraseña</label>
+                        <i class="small material-icons" style="position: absolute; top: 10px; right: 10px;">visibility_off</i>
+                    </div>
+                    <div class="input-field col m6 s12">
+                        <input id="repassword" type="password" ([ngModel])="rePassword" name="clave2" required>
+                        <label for="">Confirmación</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m6 s12">
+                        <input type="submit" class="btn" value="Cancelar">
+                    </div>
+                    <div class="col m6 s12">
+                        <input type="submit" class="btn" value="Registrarse">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
