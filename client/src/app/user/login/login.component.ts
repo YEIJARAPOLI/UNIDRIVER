@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   public token;
   public errorMessage;
 
-  singnupForm: FormGroup
+  singnupForm: FormGroup;
 
   constructor(private _userService:UserService, private _builder: FormBuilder) {
     this.user = new User('', '', '', '', '', '');
@@ -29,7 +29,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
 
+    console.log(this.identity);
+    console.log(this.token);
   }
 
   public singUp(values) {
@@ -48,6 +52,7 @@ export class LoginComponent implements OnInit {
           alert("El usuario no esta correctamente identificado");
         } else {
           // crear elemento en el localstorage para tener al usuario en sesion
+          localStorage.setItem('identity', JSON.stringify(identity));
 
           // conseguir el token para enviarlo a cada peticion http
           this._userService.singUp(this.user, 'true').subscribe(
@@ -59,6 +64,7 @@ export class LoginComponent implements OnInit {
                 alert("El token no se ha generado");
               } else {
                 // crear elemento en el localstorage para tener el token disponible
+                localStorage.setItem('token', token);
       
                 console.log(token);
                 console.log(identity);
