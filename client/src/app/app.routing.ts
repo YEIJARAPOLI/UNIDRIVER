@@ -3,9 +3,11 @@ import { Router, RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 const appRoutes: Routes = [
-    {path: '', component: LoginComponent},
+    {path: '', component: InicioComponent},
+    //{path: '', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: '**', component: LoginComponent}
 ];
