@@ -7,6 +7,7 @@ var app = express();
 
 // cargar rutas
 var user_routes = require('./routes/user');
+var credit_card_routes = require('./routes/credit_card');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -23,5 +24,6 @@ app.use((req, res, next) => {
 
 // rutas base
 app.use('/api', user_routes);
+app.use('/api',credit_card_routes);
 
 module.exports = app;
