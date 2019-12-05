@@ -4,40 +4,54 @@
             <div class="sm-jumbotron center-align">
                 <h4>Registrate</h4>
             </div>
-            <form class="col s12 white" (ngSubmit)="saveUser()">
+            <div class="row">
+                <div class="col s12">
+                    <div *ngIf="errorMessage">
+                        <strong>Error</strong> {{errorMessage}}
+                    </div>
+                </div>
+            </div>
+            <form [formGroup]="registerForm" class="col s12 white" (ngSubmit)="saveUser(registerForm.value)">
                 <div class="row">
                     <div class="input-field col m6 s12">
-                        <input id="name" type="text" ([ngModel])="user.name" name="nombre" required>
+                        <input id="name" type="text" formControlName="name" name="nombre" required autocomplete="off">
                         <label for="">Nombre</label>
                     </div>
                     <div class="input-field col m6 s12">
-                        <input id="lastName" type="text" ([ngModel])="user.lastname" name="apellido" required>
+                        <input id="lastName" type="text" formControlName="lastname" name="apellido" required autocomplete="off">
                         <label for="">Apellido</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email" ([ngModel])="user.email" name="email" required>
+                        <input id="email" type="email" formControlName="email" name="email" required autocomplete="off">
                         <label for="">E-mail</label>
+                        <div style="text-align: left; color: tomato;"
+                         *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').touched">
+                            Es necesario introducir el E-mail correcto
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col m6 s12">
-                        <input id="password" type="password" ([ngModel])="user.password" name="clave" required>
+                        <input id="password" type="password" formControlName="password" name="clave" required>
                         <label for="">Contraseña</label>
                         <i class="small material-icons" style="position: absolute; top: 10px; right: 10px;">visibility_off</i>
                     </div>
                     <div class="input-field col m6 s12">
-                        <input id="repassword" type="password" ([ngModel])="rePassword" name="clave2" required>
+                        <input id="repassword" type="password" formControlName="rePassword" name="clave2" required>
                         <label for="">Confirmación</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col m6 s12">
-                        <input type="submit" class="btn" value="Cancelar">
+                    <div class="col m6 s12" style="margin-top: -7px;">
+                        <a [routerLink]="['/']">
+                            <span>Cancelar</span>
+                        </a>
                     </div>
                     <div class="col m6 s12">
-                        <input type="submit" class="btn" value="Registrarse">
+                        <input [disabled]="registerForm.invalid" type="submit" class="btn" value="Registrarse"
+                            style="margin-top: -20px;">
                     </div>
                 </div>
             </form>

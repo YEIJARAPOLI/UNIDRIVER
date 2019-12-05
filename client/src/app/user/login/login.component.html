@@ -19,25 +19,27 @@
             <form [formGroup]="singnupForm" class="col s12 white" (ngSubmit)="singUp(singnupForm.value)">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="email" name="email" formControlName="email" ([ngModel])="user.email" required/>
+                        <input type="email" name="email" formControlName="email" required/>
                         <label for="">E-mail</label>
                         <div *ngIf="singnupForm.get('email').hasError('email') && singnupForm.get('email').touched">
                             Es necesario introducir el E-mail
                         </div>
                     </div>
                     <div class="input-field col s12">
-                        <input type="password" name="Password" formControlName="password" ([ngmodel])="user.password" required/>
+                        <input type="password" name="Password" formControlName="password" required/>
                         <label for="">Contraseña</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col m6 s12">
-                        <input [disabled]="singnupForm.invalid" type="submit" class="btn" value="Ingresar">
+                        <input [disabled]="singnupForm.invalid" type="submit" class="btn" value="Ingresar"
+                            style="margin-top: -20px;">
                     </div>
-                    <!--<div class="col m6 s12">
-                        <a routerLink="/register" class="button">Registrarse</a>
-                        <input type="submit" class="btn" value="Registrarse" rout>
-                    </div>-->
+                    <div class="col m6 s12" style="margin-top: -7px;">
+                        <a [routerLink]="['/register']">
+                            <span>Crear cuenta</span>
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>
