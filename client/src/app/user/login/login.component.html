@@ -26,8 +26,9 @@
                         </div>
                     </div>
                     <div class="input-field col s12">
-                        <input type="password" name="Password" formControlName="password" required/>
+                        <input [type]="passwordType" name="Password" formControlName="password" required/>
                         <label for="">Contraseña</label>
+                        <i class="small material-icons password-eye" (click)="togglePassword()">{{iconEye}}</i>
                     </div>
                 </div>
                 <div class="row">

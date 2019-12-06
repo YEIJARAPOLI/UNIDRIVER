@@ -1,5 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { CreditCardService } from '../services/credit_card.service';
 import { UserService } from '../services/user.service';
 import { CreditCard } from 'src/app/models/credit_card';
@@ -34,7 +36,9 @@ export class PagosComponent implements OnInit, OnChanges {
 
   constructor(private _creditCardService:CreditCardService,
               private _userService:UserService,
-              private _builder: FormBuilder) {
+              private _builder: FormBuilder,
+              private _route: ActivatedRoute,
+              private _router: Router) {
     this.creditCard = new CreditCard('', '', '', '', '', '', '');
     this.creditCards = new Array<CreditCard>();
 
@@ -49,6 +53,10 @@ export class PagosComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.identity = this._userService.getIdentity();
+    if (this.identity === null) {
+      this._router.navigate(['/']);
+    }
+
     this.token = this._userService.getToken();
 
     console.log(this.identity);
@@ -110,7 +118,7 @@ export class PagosComponent implements OnInit, OnChanges {
     } else if (value.substring(0, 1) == '5') {
       this.imagenFranquicia = 'mastercard.png';
     } else if (value.substring(0, 1) == '3') {
-      this.imagenFranquicia = 'amex2.png';
+      this.imagenFranquicia = 'amex.png';
     } else {
       this.imagenFranquicia = '';
     }

@@ -1,5 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { UserService } from '../../services/user.service';
 import { User } from 'src/app/models/user';
 
@@ -16,9 +18,13 @@ export class RegisterComponent implements OnInit {
   public user: User;
   public errorMessage;
 
+  public passwordType: string = 'password';
+  public passwordShown: boolean = false;
+  public iconEye: string = 'visibility_off';
+
   registerForm: FormGroup;
 
-  constructor(private _userService:UserService, private _builder: FormBuilder) {
+  constructor(private _userService:UserService, private _builder: FormBuilder, private _route: ActivatedRoute, private _router: Router) {
     this.user = new User ('', '', '', '', '', '');
 
     this.registerForm = this._builder.group({
@@ -31,6 +37,18 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public togglePassword() {
+    if (this.passwordShown) {
+      this.passwordShown = false;
+      this.passwordType = 'password';
+      this.iconEye = 'visibility_off';
+    } else {
+      this.passwordShown = true;
+      this.passwordType = 'text';
+      this.iconEye = 'visibility';
+    }
   }
 
   public saveUser(values) {
@@ -48,9 +66,10 @@ export class RegisterComponent implements OnInit {
           this.user = user;
 
           if (!this.user._id) {
-            alert('Error al registrarse');
+            alert('Error al registrarse, intentelo nuevamente');
           } else {
-            alert('El usuario ' + this.user.email + ' se registro correctamente');
+            localStorage.setItem('registro', 'true');
+            this._router.navigate(['/']);
           }
         },
         error => {

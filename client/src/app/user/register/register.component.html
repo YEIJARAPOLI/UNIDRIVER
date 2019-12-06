@@ -34,9 +34,9 @@
                 </div>
                 <div class="row">
                     <div class="input-field col m6 s12">
-                        <input id="password" type="password" formControlName="password" name="clave" required>
+                        <input id="password" [type]="passwordType" formControlName="password" name="clave" required>
                         <label for="">Contraseña</label>
-                        <i class="small material-icons" style="position: absolute; top: 10px; right: 10px;">visibility_off</i>
+                        <i class="small material-icons password-eye" (click)="togglePassword()">{{iconEye}}</i>
                     </div>
                     <div class="input-field col m6 s12">
                         <input id="repassword" type="password" formControlName="rePassword" name="clave2" required>

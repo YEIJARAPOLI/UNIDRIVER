@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 
@@ -16,10 +18,16 @@ export class LoginComponent implements OnInit {
   public identity;
   public token;
   public errorMessage;
+  public registro;
+
+  public passwordType: string = 'password';
+  public passwordShown: boolean = false;
+  public iconEye: string = 'visibility_off';
 
   singnupForm: FormGroup;
 
-  constructor(private _userService:UserService, private _builder: FormBuilder) {
+  constructor(private _userService:UserService, private _builder: FormBuilder,
+              private _route: ActivatedRoute, private _router: Router) {
     this.user = new User('', '', '', '', '', '');
 
     this.singnupForm = this._builder.group({
@@ -30,10 +38,34 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.identity = this._userService.getIdentity();
+    this.registro = this._userService.getUserRegister();
+    if (this.identity === null) {
+      this._router.navigate(['/']);
+    } else {
+      this._router.navigate(['/index']);
+    }
+    console.log('Soy registro: ' + this.registro);
+    if (this.registro) {
+      alert('Se acabo de generar un registro, por favor inicie sesión para continuar');
+      localStorage.removeItem('registro');
+    }
+
     this.token = this._userService.getToken();
 
     console.log(this.identity);
     console.log(this.token);
+  }
+
+  public togglePassword() {
+    if (this.passwordShown) {
+      this.passwordShown = false;
+      this.passwordType = 'password';
+      this.iconEye = 'visibility_off';
+    } else {
+      this.passwordShown = true;
+      this.passwordType = 'text';
+      this.iconEye = 'visibility';
+    }
   }
 
   public singUp(values) {
@@ -68,6 +100,7 @@ export class LoginComponent implements OnInit {
       
                 console.log(token);
                 console.log(identity);
+                this._router.navigate(['/index']);
               }
             },
             error => {

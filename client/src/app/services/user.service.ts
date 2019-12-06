@@ -11,6 +11,7 @@ export class UserService {
     public url: string;
     public identity: string;
     public token: string;
+    public registro: string;
 
     constructor(private _http: Http) {
         this.url = GLOBAL.url;
@@ -69,5 +70,17 @@ export class UserService {
         }
 
         return this.token;
+    }
+
+    getUserRegister() {
+        let registro = JSON.parse(localStorage.getItem('registro'));
+
+        if (registro != "undefined") {
+            this.registro = registro;
+        } else {
+            this.registro = null;
+        }
+
+        return this.registro;
     }
 }

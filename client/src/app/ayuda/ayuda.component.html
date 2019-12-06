@@ -1,0 +1,31 @@
+<div class="container section">
+    <div class="col s12">
+        <a [routerLink]="['/index']" class="sidenav-trigger" data-target="menu-side"
+            style="color: #232525; position: absolute; left: 15px; top: 15px;">
+            <i class="material-icons">arrow_back</i>
+        </a>
+    </div>
+    <div>
+        <div class="sm-jumbotron center-align">
+            <h4>Ayuda</h4>
+        </div>
+        <div class="row">
+            <div class="input-field col m6 s12 offset-m3">
+                <i class="material-icons prefix">search</i>
+                <input type="text" #buscar id="buscar" (keyup)="search(buscar.value)" class="autocomplete">
+                <label for="buscar">¿Comó podemos ayudarte?</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m6 s12 offset-m3">
+                <h5>
+                    {{title}}
+                </h5>
+                <div class="divider modal-separator"></div>
+                <span>
+                    {{description}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
