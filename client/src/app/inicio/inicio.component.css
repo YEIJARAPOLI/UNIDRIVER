@@ -60,3 +60,12 @@ nav .nav-wrapper{
     line-height: 50px;
     background: #404040;
 }
+
+.menu {
+    color: #FFF;
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    cursor: pointer;
+    z-index: 100;
+}
