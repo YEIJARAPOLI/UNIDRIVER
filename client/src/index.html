@@ -9,13 +9,21 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Google Maps-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDGL2yN4g7MPuEsAYMTwwO9dabgeFihOE" async defer></script>
+  
 </head>
-<body>
+<body onload="cargar_mapa()">
   <app-root></app-root>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+  <script type="text/javascript" src="assets/js/inicio.js"></script>
+  
   <script>
     document.addEventListener('DOMContentLoaded', function( ) {
       var elems = document.querySelectorAll('.slider');
