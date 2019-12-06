@@ -10,6 +10,7 @@ import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { PagosComponent } from './pagos/pagos.component';
+import { AyudaComponent } from './ayuda/ayuda.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PagosComponent } from './pagos/pagos.component';
     LoginComponent,
     RegisterComponent,
     InicioComponent,
-    PagosComponent
+    PagosComponent,
+    AyudaComponent
   ],
   imports: [
     BrowserModule,
