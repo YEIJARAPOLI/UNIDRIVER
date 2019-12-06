@@ -44,8 +44,7 @@ function cargar_mapa()
 function BuscarMap()
 {
     var address = document.getElementById('search-destiny').value;
-    var gMarkerDV = new google.maps.Marker();
-        
+
     var gCoder = new google.maps.Geocoder();
 
         var objInformation = {
@@ -64,11 +63,19 @@ function BuscarMap()
                     title: 'Usted está aquí'
                 }
                 var gMarkerDV = new google.maps.Marker(configSet);
+                var objHtml = {
+                    content: '<div style="height: 150px; width: 300px"><h3>Destino</h3><h4>$9.500</h4><a class="waves-effect waves-light btn modal-trigger" href="http://localhost:4200/index" >Aceptar</a></div>'
+                }
+                var gWI = new google.maps.InfoWindow(objHtml);
+
+                google.maps.event.addListener(gMarkerDV, 'click', function(){
+                    gWI.open(map,gMarkerDV);
+                });
             }
-            gMarkerDV.setMap(null);
 
             var objConfigDR = {
-                map: map
+                map: map,
+                suppressMarkers: true
             }
 
             if (navigator.geolocation) {
