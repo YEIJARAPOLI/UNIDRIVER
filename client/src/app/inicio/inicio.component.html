@@ -1,4 +1,54 @@
+<div class="container section">
+    <a href="#" class="sidenav-trigger" data-target="menu-side" style="color: #232525; position: absolute; left: 15px;">
+        <i class="material-icons">menu</i>
+    </a>
 
+    <ul class="sidenav" id="menu-side">
+        <li>
+            <div class="user-view">
+                <a href="#" style="position: absolute; top: -6px; right: 15px; font-size: 13px;">
+                    <span class="white-text">Cerrar Sesión</span>
+                </a>
+                <div class="background">
+                    <img src="../../assets/img/trafic.jpg" alt="">
+                </div>
+                <a href="#">
+                    <img class="circle" src="../../assets/img/logo.jpeg" alt="" style="margin-left: 36%;">
+                </a>
+                <a href="">
+                    <span class="name white-text">Yeison Gil</span>
+                </a>
+                <a href="">
+                    <span class="email white-text">yeijara@gmail.com</span>
+                </a>
+            </div>
+        </li>
+        <li>
+            <a href="">
+                <i class="material-icons">dvr</i>
+                Historial
+            </a>
+        </li>
+        <li>
+            <a [routerLink]="['/pagos']">
+                <i class="material-icons">credit_card</i>
+                Pagos
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <i class="material-icons">help_outline</i>
+                Ayuda
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <i class="material-icons">settings</i>
+                Configuración
+            </a>
+        </li>
+    </ul>
+</div>
 <div class="container_map">      
     <nav>
         <div class="nav-wrapper">

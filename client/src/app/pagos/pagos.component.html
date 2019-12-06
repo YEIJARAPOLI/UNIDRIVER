@@ -1,0 +1,160 @@
+<div id="modalFechaTj" class="modal" style="overflow-y: hidden;">
+    <div class="modal-content">
+        <h4>Fecha de vencimiento</h4>
+        <div class="divider"></div>
+
+        <div class="row modal-separator">
+            <div class="col s7" style="text-align: justify;">
+                <span>
+                    Encontrarás esta fecha al frente de tu tarjeta, debajo del número de tarjeta.
+                </span>
+            </div>
+            <div class="col s5">
+                <img class="responsive-img" src="../../assets/img/MM_AA.jpeg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col s6 offset-s6">
+                <button class="btn modal-close">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalCVV" class="modal" style="overflow-y: hidden;">
+    <div class="modal-content">
+        <h4>CVV</h4>
+        <div class="divider"></div>
+
+        <div class="row modal-separator">
+            <div class="col s7" style="text-align: justify;">
+                <span>
+                    Un código de tres dígitos ubicado al reverso de tu tarjeta de crédito.
+                </span>
+            </div>
+            <div class="col s5">
+                <img class="responsive-img" src="../../assets/img/CVV.jpeg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col m6 offset-m6 s12">
+                <button class="btn modal-close">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!agregandoMedioPago">
+    <div class="col s12">
+        <a [routerLink]="['/index']" class="sidenav-trigger" data-target="menu-side"
+         style="color: #232525; position: absolute; left: 15px; top: 15px;">
+            <i class="material-icons">arrow_back</i>
+        </a>
+    </div>
+    <div class="col m6 s12 offset-m3">
+        <div>
+            <div class="sm-jumbotron center-align">
+                <h4>Pago</h4>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div *ngIf="errorMessage">
+                        <strong>Error</strong> {{errorMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <h6>Métodos de pago</h6>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row modal-separator">
+                <div class="col s8 m4 offset-m4 offset-s2">
+                    <div class="row" *ngFor="let creditCard of creditCards">
+                        <div class="col m3 s2">
+                            <img class="responsive-img" src="{{urlImg + creditCard.franchise}}" alt="">
+                        </div>
+                        <div class="col m9 s10">
+                            {{creditCard.number}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <a href="#" (click)="agregarMetodoPago()">Agregar método de pago</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="agregandoMedioPago">
+    <div class="col m6 s12 offset-m3">
+        <div>
+            <div class="sm-jumbotron center-align">
+                <h4>Agregar Tarjeta</h4>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div *ngIf="errorMessage">
+                        <strong>Error</strong> {{errorMessage}}
+                    </div>
+                </div>
+            </div>
+            <form [formGroup]="tarjetForm" class="col s12 white" (ngSubmit)="saveCreditCard(tarjetForm.value)">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="text" name="nombre"  formControlName="name" required autocomplete="off">
+                        <label for="">Nombre tarjeta-habitate</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div class="franquicia">
+                            <img class="responsive-img" src="{{urlImg + imagenFranquicia}}" alt="">
+                        </div>
+                        <input class="inputf" #numero type="text" name="numero" value="{{numeroTarjeta}}"
+                         (keyup)="validarNumeroTarjeta(numero.value)" required autocomplete="off">
+                        <label for="">Número de tarjeta</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col m6 s12">
+                        <input #fecha type="text" name="clave" value="{{fechaTj}}"
+                         (keyup)="validarFechaTj(fecha.value)" required autocomplete="off">
+                        <label for="">MM/AA</label>
+                        <a class="modal-trigger" href="#modalFechaTj">
+                            <i class="small material-icons btn-help">
+                                help_outline
+                            </i>
+                        </a>
+                    </div>
+                    <div class="input-field col m6 s12">
+                        <input id="cvv" type="password" name="cvv" formControlName="cvv" required>
+                        <label for="">CVV</label>
+                        <a href="#modalCVV" class="modal-trigger">
+                            <i class="small material-icons btn-help">
+                                help_outline
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m6 s12" style="margin-top: -7px;">
+                        <a href="#" (click)="cancelarMetodoPago()">
+                            <span>Cancelar</span>
+                        </a>
+                    </div>
+                    <div class="col m6 s12">
+                        <input type="submit" class="btn" value="Agregar" style="margin-top: -20px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

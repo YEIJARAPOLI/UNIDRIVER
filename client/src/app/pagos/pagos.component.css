@@ -19,3 +19,32 @@
 .btn:hover {
     background-position: right;
 }
+
+.franquicia {
+    max-width: 40px;
+    position: absolute;
+    top: 4px;
+}
+
+.inputf {
+    padding-left: 50px !important;
+}
+
+.btn-help {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+.modal {
+    /*width: 30% !important;*/
+    /*height: 35% !important;*/
+    max-height: 100%;
+}
+
+.modal-separator {
+    margin-top: 20px;
+}
