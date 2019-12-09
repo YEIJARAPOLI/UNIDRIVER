@@ -3,7 +3,8 @@ var infoWindow;
 
 function cargar_mapa()
 {
-
+    var address_input = document.getElementById('search-destiny');
+    var autocomplete = new google.maps.places.Autocomplete(address_input);
     infoWindow = new google.maps.InfoWindow;
 
     if (navigator.geolocation) {
@@ -47,6 +48,8 @@ function BuscarMap()
 
     var gCoder = new google.maps.Geocoder();
 
+    var gMarkerDV = new google.maps.Marker();
+
         var objInformation = {
                 address: address
             }
@@ -62,14 +65,14 @@ function BuscarMap()
                     draggable: true,
                     title: 'Usted está aquí'
                 }
-                var gMarkerDV = new google.maps.Marker(configSet);
+                 gMarkerDV = new google.maps.Marker(configSet);
                 var objHtml = {
-                    content: '<div style="height: 150px; width: 300px"><h3>Destino</h3><h4>$9.500</h4><a class="waves-effect waves-light btn modal-trigger" href="http://localhost:4200/index" >Aceptar</a></div>'
+                    content: '<div style="height: 180px; width: 300px"><h4><p>Destino</p></h4><p>' + address + '</p><h4>$9.500</h4><a href="#modal1" class="waves-effect waves-light btn modal-trigger">Aceptar</a><a href="index" class="waves-effect waves-light btn modal-trigger" id="CancelModal" style="margin-left: 10px;">Cancelar</a></div>'
                 }
                 var gWI = new google.maps.InfoWindow(objHtml);
-
+                gWI.open(map,gMarkerDV);
                 google.maps.event.addListener(gMarkerDV, 'click', function(){
-                    gWI.open(map,gMarkerDV);
+                  gWI.open(map,gMarkerDV);
                 });
             }
 
@@ -88,7 +91,8 @@ function BuscarMap()
                   var objConfigDS = {
                     origin: posOrigin,
                     destination: objInformation.address,
-                    travelMode: google.maps.TravelMode.DRIVING
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.METRIC
                 }
     
                 var ds = new google.maps.DirectionsService(); //Obtener coordenadas
@@ -116,3 +120,8 @@ function BuscarMap()
                 handleLocationError(false, infoWindow, map.getCenter());
               }
 }
+
+  //jQuery
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });

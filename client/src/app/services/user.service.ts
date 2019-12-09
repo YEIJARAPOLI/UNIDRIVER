@@ -12,6 +12,7 @@ export class UserService {
     public identity: string;
     public token: string;
     public registro: string;
+    public reload;
 
     constructor(private _http: Http) {
         this.url = GLOBAL.url;
@@ -82,5 +83,24 @@ export class UserService {
         }
 
         return this.registro;
+    }
+
+    getReload() {
+        let reload = JSON.parse(localStorage.getItem('reload'));
+
+        if (reload != "undefined") {
+            this.reload = reload;
+            console.log(this.reload);
+
+            if(!reload) {
+                this.reload = reload;
+            } else {
+                this.reload = true;
+            }
+        } else {
+            this.reload = null;
+        }
+
+        return this.reload;
     }
 }

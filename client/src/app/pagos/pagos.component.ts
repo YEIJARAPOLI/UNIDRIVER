@@ -19,6 +19,7 @@ export class PagosComponent implements OnInit, OnChanges {
   
   public identity;
   public token: string;
+  public reload;
 
   public agregandoMedioPago: boolean;
   public numeroTarjeta: string = '';
@@ -53,6 +54,7 @@ export class PagosComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.identity = this._userService.getIdentity();
+    this.reload = this._userService.getReload();
     if (this.identity === null) {
       this._router.navigate(['/']);
     }
@@ -62,9 +64,19 @@ export class PagosComponent implements OnInit, OnChanges {
     console.log(this.identity);
 
     this.listCreditCards();
+    this.reloadPage();
   }
 
   ngOnChanges() {
+  }
+
+  private reloadPage() { //click handler or similar 
+    console.log('Recargando la página: ' + this.reload);
+    if (this.reload) {
+      location.reload();
+      localStorage.removeItem('reload');
+      localStorage.setItem('reload', 'false');
+    }
   }
 
   private listCreditCards() {

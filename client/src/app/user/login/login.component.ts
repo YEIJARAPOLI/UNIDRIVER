@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
               } else {
                 // crear elemento en el localstorage para tener el token disponible
                 localStorage.setItem('token', token);
+                localStorage.setItem('reload', 'true');
       
                 console.log(token);
                 console.log(identity);

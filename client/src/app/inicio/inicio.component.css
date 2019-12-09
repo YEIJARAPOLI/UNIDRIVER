@@ -45,7 +45,7 @@ nav .nav-wrapper{
     }
 }    
 
-.waves-effect{
+#BuscarCoor.waves-effect{
     position: absolute;
     top: 0;
     width: 45px;
